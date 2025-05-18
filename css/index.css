@@ -162,3 +162,61 @@ body, html {
     margin-left: 4px;
     letter-spacing: 1px;
 }
+
+/* --- Responsive para móviles --- */
+@media (max-width: 700px) {
+    .center-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+        gap: 0;
+        padding: 16px 0 32px 0;
+    }
+
+    .machine {
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
+
+    #main-img {
+        width: 90vw;
+        max-width: 320px;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 18px;
+        box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.10);
+        background: #fff;
+        padding: 8px;
+        /* Deja un pequeño borde */
+        box-sizing: border-box;
+    }
+
+    .premio-container {
+        position: static;
+        transform: none;
+        margin-top: -60px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column-reverse; /* Invierte el orden: mensaje arriba */
+        align-items: center;
+    }
+
+    .historial-container {
+        position: static;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 18px;
+        margin: 0 auto 16px auto;
+        box-shadow: 0 2px 8px #0001;
+        padding: 18px 8px;
+        min-height: unset;
+        height: auto;
+    }
+
+    #historial-list li {
+        justify-content: flex-start;
+        gap: 10px;
+    }
+}
