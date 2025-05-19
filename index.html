@@ -10,17 +10,55 @@
 <body>
     <div class="center-container">
         <div class="machine">
-            <img id="main-img" src="img/maquinita.png" alt="Maquinita">
-            <div class="premio-container">
-                <img id="random-img" class="hidden" src="" alt="Premio">
+            <div class="video-container">
+                <video id="main-img" src="img/Maquinita.mp4" alt="Maquinita" width="600" height="600" muted playsinline style="border-radius:24px; background:#fff; object-fit:cover;"></video>
                 <div id="click-msg" class="hidden">Haz click aquí</div>
             </div>
+            <div class="premio-container">
+                <img id="random-img" class="hidden" src="" alt="Premio">
+            </div>
         </div>
-        <div class="historial-container">
-            <h2>Historial</h2>
-            <ul id="historial-list"></ul>
+        <div class="bottom-panels">
+            <div class="variantes-toggle">
+                <button id="toggle-variantes">☰ Coleccionables</button>
+                <div class="variantes-container hide" id="variantes-container">
+                    <h2>Variantes</h2>
+                    <div class="variante variante-figuras">
+                        <span class="variante-title">Figuras <span class="estrella" id="estrella-figura"></span></span>
+                        <ul>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616494.png" alt="Figura 1" class="icono-variante"> Figura 1</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616495.png" alt="Figura 2" class="icono-variante"> Figura 2</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616496.png" alt="Figura 3" class="icono-variante"> Figura 3</li>
+                        </ul>
+                    </div>
+                    <div class="variante variante-tarjetas">
+                        <span class="variante-title">Tarjetas <span class="estrella" id="estrella-tarjeta"></span></span>
+                        <ul>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Tarjeta 1" class="icono-variante"> Tarjeta 1</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/3135/3135716.png" alt="Tarjeta 2" class="icono-variante"> Tarjeta 2</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/3135/3135717.png" alt="Tarjeta 3" class="icono-variante"> Tarjeta 3</li>
+                        </ul>
+                    </div>
+                    <div class="variante variante-llaveros">
+                        <span class="variante-title">Llaveros <span class="estrella" id="estrella-llavero"></span></span>
+                        <ul>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616497.png" alt="Llavero 1" class="icono-variante"> Llavero 1</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616498.png" alt="Llavero 2" class="icono-variante"> Llavero 2</li>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/616/616499.png" alt="Llavero 3" class="icono-variante"> Llavero 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="historial-toggle">
+                <button id="toggle-historial">☰ Historial</button>
+                <div class="historial-container hide" id="historial-container">
+                    <h2>Historial</h2>
+                    <ul id="historial-list"></ul>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/index.js"></script>
 </body>
+
 </html>

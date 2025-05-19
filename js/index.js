@@ -1,60 +1,71 @@
 // Cada objeto tiene src y probabilidad (suma total debe ser 1)
 const premios = [
-    { src: "https://placekitten.com/100/100", prob: 0.5 },
-    { src: "https://placebear.com/100/100", prob: 0.2 },
-    { src: "https://placebeard.it/100x100", prob: 0.15 },
-    { src: "https://placehold.co/100x100", prob: 0.1 },
-    { src: "https://picsum.photos/100/100", prob: 0.05 }
+    // Figuras
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616494.png", prob: 0.18, tipo: "figura" },
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616495.png", prob: 0.10, tipo: "figura" },
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616496.png", prob: 0.07, tipo: "figura" },
+    // Tarjetas
+    { src: "https://cdn-icons-png.flaticon.com/128/3135/3135715.png", prob: 0.20, tipo: "tarjeta" },
+    { src: "https://cdn-icons-png.flaticon.com/128/3135/3135716.png", prob: 0.10, tipo: "tarjeta" },
+    { src: "https://cdn-icons-png.flaticon.com/128/3135/3135717.png", prob: 0.05, tipo: "tarjeta" },
+    // Llaveros
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616497.png", prob: 0.15, tipo: "llavero" },
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616498.png", prob: 0.10, tipo: "llavero" },
+    { src: "https://cdn-icons-png.flaticon.com/128/616/616499.png", prob: 0.05, tipo: "llavero" }
 ];
 
-const mainImg = document.getElementById('main-img');
+const mainVid = document.getElementById('main-img');
 const randomImg = document.getElementById('random-img');
 const clickMsg = document.getElementById('click-msg');
 const historialList = document.getElementById('historial-list');
+const toggleBtn = document.getElementById('toggle-variantes');
+const variantesContainer = document.getElementById('variantes-container');
+const historialToggleBtn = document.getElementById('toggle-historial');
+const historialContainer = document.getElementById('historial-container');
 
 let mostrandoPremio = false;
-const contadorPremios = {}; // Nuevo: objeto para contar repeticiones
+let esperandoPremio = false;
+const contadorPremios = {};
 
-// Función para elegir premio según probabilidad
-function elegirPremio() {
-    const r = Math.random();
-    let acumulado = 0;
-    for (let i = 0; i < premios.length; i++) {
-        acumulado += premios[i].prob;
-        if (r < acumulado) return premios[i].src;
-    }
-    // fallback
-    return premios[premios.length - 1].src;
-}
+mainVid.addEventListener('click', () => {
+    // Solo permite click si NO está esperando ni mostrando premio
+    if (mostrandoPremio || esperandoPremio) return;
 
-mainImg.addEventListener('click', () => {
-    if (mostrandoPremio) {
-        randomImg.classList.remove('show');
-        clickMsg.classList.remove('show');
-        setTimeout(() => {
-            randomImg.classList.add('hidden');
-            clickMsg.classList.add('hidden');
-            mostrandoPremio = false;
-        }, 500);
-        return;
-    }
-
-    // Agita la imagen principal
-    mainImg.classList.add('shake');
-    // Selecciona imagen aleatoria con probabilidad
-    const premio = elegirPremio();
-    randomImg.src = premio;
-    randomImg.classList.remove('hidden');
-
-    // Actualiza el contador
-    contadorPremios[premio] = (contadorPremios[premio] || 0) + 1;
-    const contadorMostrado = Math.min(contadorPremios[premio], 6);
+    esperandoPremio = true; // Bloquea más clicks
+    mainVid.play();
+    clickMsg.classList.add('hidden');
+    randomImg.classList.add('hidden');
 
     setTimeout(() => {
-        randomImg.classList.add('show');
-        clickMsg.classList.remove('hidden');
-        clickMsg.classList.add('show');
-        mostrandoPremio = true;
+        const premio = elegirPremio();
+        randomImg.src = premio;
+        randomImg.classList.remove('hidden');
+        setTimeout(() => {
+            randomImg.classList.add('show');
+            clickMsg.classList.remove('hidden');
+            clickMsg.classList.add('show');
+            mostrandoPremio = true;
+            esperandoPremio = false; // Ya no está esperando, pero sí mostrando
+        }, 100);
+    }, 5000);
+});
+
+// Click en cualquier parte de la pantalla para aceptar el premio y agregar al historial
+document.body.addEventListener('click', (e) => {
+    // Solo permite aceptar si el premio está visible y no fue click en el video
+    if (!mostrandoPremio || e.target === mainVid) return;
+
+    randomImg.classList.remove('show');
+    clickMsg.classList.remove('show');
+    setTimeout(() => {
+        randomImg.classList.add('hidden');
+        clickMsg.classList.add('hidden');
+        mostrandoPremio = false; // Ahora sí se puede volver a hacer click
+
+        // Agrega al historial
+        const premio = randomImg.src;
+        contadorPremios[premio] = (contadorPremios[premio] || 0) + 1;
+        const contadorMostrado = Math.min(contadorPremios[premio], 6);
 
         // Busca si ya existe la imagen en el historial
         let encontrado = false;
@@ -88,14 +99,62 @@ mainImg.addEventListener('click', () => {
                 li.appendChild(span);
             }
             historialList.insertBefore(li, historialList.firstChild);
-            // Limita historial a 10 elementos
             while (historialList.children.length > 10) {
                 historialList.removeChild(historialList.lastChild);
             }
         }
-    }, 200);
+        // Reinicia el video para el siguiente intento
+        mainVid.currentTime = 0;
+    }, 300);
 
-    setTimeout(() => {
-        mainImg.classList.remove('shake');
-    }, 500);
+    // Marca la estrella de la variante correspondiente
+    const premioObj = premios.find(p => p.src === randomImg.src);
+    if (premioObj) {
+        ['estrella-figura', 'estrella-tarjeta', 'estrella-llavero'].forEach(id => {
+            document.getElementById(id).classList.remove('activa');
+        });
+        document.getElementById('estrella-' + premioObj.tipo).classList.add('activa');
+    }
 });
+
+toggleBtn.addEventListener('click', () => {
+    const isMobile = window.innerWidth <= 700;
+    if (variantesContainer.classList.contains('show')) {
+        variantesContainer.classList.remove('show');
+        variantesContainer.classList.add('hide');
+    } else {
+        variantesContainer.classList.remove('hide');
+        variantesContainer.classList.add('show');
+        // Si es móvil, cierra historial
+        if (isMobile && historialContainer.classList.contains('show')) {
+            historialContainer.classList.remove('show');
+            historialContainer.classList.add('hide');
+        }
+    }
+});
+
+historialToggleBtn.addEventListener('click', () => {
+    const isMobile = window.innerWidth <= 700;
+    if (historialContainer.classList.contains('show')) {
+        historialContainer.classList.remove('show');
+        historialContainer.classList.add('hide');
+    } else {
+        historialContainer.classList.remove('hide');
+        historialContainer.classList.add('show');
+        // Si es móvil, cierra variantes
+        if (isMobile && variantesContainer.classList.contains('show')) {
+            variantesContainer.classList.remove('show');
+            variantesContainer.classList.add('hide');
+        }
+    }
+});
+
+function elegirPremio() {
+    const r = Math.random();
+    let acumulado = 0;
+    for (let i = 0; i < premios.length; i++) {
+        acumulado += premios[i].prob;
+        if (r < acumulado) return premios[i].src;
+    }
+    return premios[premios.length - 1].src;
+}
