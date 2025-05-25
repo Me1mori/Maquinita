@@ -1,35 +1,174 @@
-*{
+* {
     margin: 0;
 }
 
-h1{
+h1 {
     font-size: 60px;
 }
 
-body{
+body {
     text-align: center;
 }
 
 header {
     display: flex;
-    border-bottom: 4px solid black ;
+    border-bottom: 4px solid black;
 }
 
-.icono{
-    margin-top: 7px;
-    width: 55px;
-    height: 55px;
+/* --- MODO PC (ancho mayor a 700px) --- */
+@media (min-width: 701px) {
+    .icono {
+        margin-top: 7px;
+        width: 55px;
+        height: 55px;
+        margin-right: 50%;
+    }
+
+    .titulo-gasha {
+        margin-left: 35%;
+        margin-right: 10px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 40px;
+        flex-direction: row;
+    }
+
+    .pxf,
+    .verano,
+    .dream-mi {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 210px;
+        margin: 0 10px;
+    }
+
+    .h2-suptitle {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+        border: 4px solid black;
+        padding: 10px;
+        background: #fff;
+    }
+
+    .maquinita-img {
+        width: 170px;
+        border: 4px solid black;
+        background: #000;
+    }
+
+    .personas {
+        display: block;
+        margin: 45px auto 45px auto;
+        width: 350px;
+    }
+
+    .me1mori,
+    .toyaukasami {
+        display: flex;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+    .persona-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 6px solid black;
+        margin-right: 12px;
+    }
+
+    .me1mori-h2,
+    .toyaukasami-h2 {
+        margin: 0;
+        font-size: 1.3rem;
+    }
 }
 
-.titulo-gasha {
-    margin-left: 40%;
-    margin-right: 5px;
-}
+/* --- MODO MÓVIL (ancho menor o igual a 700px) --- */
+@media (max-width: 700px) {
+    .icono {
+        margin-top: 7px;
+        width: 55px;
+        height: 55px;
+        margin-right: 50%;
+    }
 
-.maquinita{
-    width: 125px;
-}
+    .titulo-gasha {
+        margin-left: 15%;
+        margin-right: 10px;
+    }
 
-.pxf-h1{
-    display: block;
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        margin-top: 18px;
+    }
+
+    .pxf,
+    .verano,
+    .dream-mi {
+        width: 90vw;
+        max-width: 150px;
+        display: flex;
+        flex-direction: column; /* Cambia de row a column */
+        align-items: center;
+        text-align: center;
+        border-radius: 18px;
+        border: 2px solid #fbbf24;
+    }
+
+    .h2-suptitle {
+        font-size: 1.2rem;
+        margin: 0 0 8px 0; /* Espacio solo abajo */
+        border: none;
+        padding: 0;
+        background: none;
+    }
+
+    .maquinita-img {
+        width: 70px;
+        border: none;
+        background: none;
+        margin: 0 0 8px 0;
+    }
+
+    .personas {
+        width: 95vw;
+        margin: 30px auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .me1mori,
+    .toyaukasami {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+        /* Elimina width: 100%; para que el contenido se centre según su tamaño */
+    }
+
+    .persona-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 4px solid black;
+        margin-right: 10px;
+    }
+
+    .me1mori-h2,
+    .toyaukasami-h2 {
+        margin: 0;
+        font-size: 1.1rem;
+        text-align: center; /* Opcional, asegura el centrado del texto */
+    }
 }
