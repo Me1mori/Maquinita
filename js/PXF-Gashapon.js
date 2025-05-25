@@ -1,14 +1,11 @@
 // --- Configuración de premios ---
 const premios = [
-    // Figuras
     { src: "https://cdn-icons-png.flaticon.com/128/616/616494.png", prob: 0.18, tipo: "figura" },
     { src: "https://cdn-icons-png.flaticon.com/128/616/616495.png", prob: 0.10, tipo: "figura" },
     { src: "https://cdn-icons-png.flaticon.com/128/616/616496.png", prob: 0.07, tipo: "figura" },
-    // Tarjetas
     { src: "https://cdn-icons-png.flaticon.com/128/3135/3135715.png", prob: 0.20, tipo: "tarjeta" },
     { src: "https://cdn-icons-png.flaticon.com/128/3135/3135716.png", prob: 0.10, tipo: "tarjeta" },
     { src: "https://cdn-icons-png.flaticon.com/128/3135/3135717.png", prob: 0.05, tipo: "tarjeta" },
-    // Llaveros
     { src: "https://cdn-icons-png.flaticon.com/128/616/616497.png", prob: 0.15, tipo: "llavero" },
     { src: "https://cdn-icons-png.flaticon.com/128/616/616498.png", prob: 0.10, tipo: "llavero" },
     { src: "https://cdn-icons-png.flaticon.com/128/616/616499.png", prob: 0.05, tipo: "llavero" }
@@ -19,10 +16,15 @@ const mainVid = document.getElementById('main-img');
 const randomImg = document.getElementById('random-img');
 const clickMsg = document.getElementById('click-msg');
 const historialList = document.getElementById('historial-list');
-const variantesBtn = document.getElementById('toggle-variantes');
-const historialBtn = document.getElementById('toggle-historial');
-const variantesContainer = document.getElementById('variantes-container');
-const historialContainer = document.getElementById('historial-container');
+const historialListM = document.getElementById('historial-list-m');
+const btnVariantes = document.getElementById('toggle-variantes');
+const contVariantes = document.getElementById('variantes-container');
+const btnHistorial = document.getElementById('toggle-historial');
+const contHistorial = document.getElementById('historial-container');
+const btnVariantesM = document.getElementById('toggle-variantes-m');
+const contVariantesM = document.getElementById('variantes-container-m');
+const btnHistorialM = document.getElementById('toggle-historial-m');
+const contHistorialM = document.getElementById('historial-container-m');
 
 // --- Estado ---
 let mostrandoPremio = false;
@@ -57,39 +59,17 @@ mainVid.addEventListener('click', () => {
 
     // Espera 5 segundos antes de mostrar la animación de la bola
     setTimeout(() => {
-        // Crea la estructura de la bolita
-        const bolitaContainer = document.createElement('div');
-        bolitaContainer.className = 'bolita-anim-container';
-
-        bolitaContainer.innerHTML = `
-          <div class="bolita-container">
-            <div class="circle-half left"></div>
-            <div class="circle-half right"></div>
-            <div class="flash"></div>
-          </div>
-        `;
-
-        animacionPremio.appendChild(bolitaContainer);
-
-        // Inicia la animación de apertura
+        animacionPremio.innerHTML = ''; // Aquí puedes agregar animación si quieres
+        randomImg.classList.remove('hidden');
+        randomImg.classList.add('show');
+        randomImg.style.opacity = 1;
+        mostrandoPremio = true;
+        esperandoPremio = false;
         setTimeout(() => {
-            bolitaContainer.querySelector('.bolita-container').classList.add('open');
+            clickMsg.classList.remove('hidden');
+            clickMsg.classList.add('show');
         }, 300);
-
-        // Espera a que termine la animación (~1.5s), luego muestra el premio
-        setTimeout(() => {
-            animacionPremio.innerHTML = '';
-            randomImg.classList.remove('hidden');
-            randomImg.classList.add('show');
-            randomImg.style.opacity = 1;
-            mostrandoPremio = true;
-            esperandoPremio = false;
-            setTimeout(() => {
-                clickMsg.classList.remove('hidden');
-                clickMsg.classList.add('show');
-            }, 300);
-        }, 1800);
-    }, 5000); // <-- 5 segundos de espera antes de la animación
+    }, 5000);
 });
 
 // --- Evento: Reclamar premio (click fuera del video) ---
@@ -103,173 +83,26 @@ document.body.addEventListener('click', (e) => {
         mostrandoPremio = false;
         document.getElementById('animacion-premio').innerHTML = '';
 
-        // Agrega al historial
+        // Incrementa SOLO una vez
         const premio = randomImg.src;
         contadorPremios[premio] = (contadorPremios[premio] || 0) + 1;
-        const contadorMostrado = Math.min(contadorPremios[premio], 6);
+        const contadorActual = contadorPremios[premio];
 
-        // Busca si ya existe la imagen en el historial
-        let encontrado = false;
-        for (let li of historialList.children) {
-            const img = li.querySelector('img');
-            if (img && img.src === premio) {
-                let span = li.querySelector('span');
-                if (!span) {
-                    span = document.createElement('span');
-                    span.style.marginLeft = "8px";
-                    span.style.fontWeight = "bold";
-                    li.appendChild(span);
-                }
-                span.textContent = `P${contadorMostrado}`;
-                historialList.insertBefore(li, historialList.firstChild);
-                encontrado = true;
-                break;
-            }
+        actualizarHistorial(historialList, premio, contadorActual);
+        if (historialListM && historialListM !== historialList) {
+            actualizarHistorial(historialListM, premio, contadorActual);
         }
-        if (!encontrado) {
-            const li = document.createElement('li');
-            const img = document.createElement('img');
-            img.src = premio;
-            img.alt = "Premio";
-            li.appendChild(img);
-            if (contadorMostrado > 1) {
-                const span = document.createElement('span');
-                span.textContent = `P${contadorMostrado}`;
-                span.style.marginLeft = "8px";
-                span.style.fontWeight = "bold";
-                li.appendChild(span);
-            }
-            historialList.insertBefore(li, historialList.firstChild);
-            while (historialList.children.length > 10) {
-                historialList.removeChild(historialList.lastChild);
-            }
-        }
-        // Reinicia el video y lo pausa al instante
+
         mainVid.currentTime = 0;
         mainVid.pause();
     }, 300);
-
-    // Marca la estrella de la variante correspondiente
-    const premioObj = premios.find(p => p.src === randomImg.src);
-    if (premioObj) {
-        ['estrella-figura', 'estrella-tarjeta', 'estrella-llavero'].forEach(id => {
-            document.getElementById(id).classList.remove('activa');
-        });
-        document.getElementById('estrella-' + premioObj.tipo).classList.add('activa');
-    }
 });
 
-// --- Evento: Toggle Coleccionables ---
-variantesBtn.addEventListener('click', () => {
-    const isMobile = window.innerWidth <= 700;
-    if (variantesContainer.classList.contains('show')) {
-        variantesContainer.classList.remove('show');
-        variantesContainer.classList.add('hide');
-    } else {
-        variantesContainer.classList.remove('hide');
-        variantesContainer.classList.add('show');
-        // Al abrir, asegúrate de que todas estén plegadas
-        document.querySelectorAll('.variante-list').forEach(list => {
-            list.classList.remove('show');
-            list.classList.add('hide');
-        });
-        // Si es móvil, cierra historial
-        if (isMobile && historialContainer.classList.contains('show')) {
-            historialContainer.classList.remove('show');
-            historialContainer.classList.add('hide');
-        }
-    }
-});
-
-// --- Evento: Toggle Historial ---
-historialBtn.addEventListener('click', () => {
-    const isMobile = window.innerWidth <= 700;
-    if (historialContainer.classList.contains('show')) {
-        historialContainer.classList.remove('show');
-        historialContainer.classList.add('hide');
-    } else {
-        historialContainer.classList.remove('hide');
-        historialContainer.classList.add('show');
-        // Si es móvil, cierra variantes
-        if (isMobile && variantesContainer.classList.contains('show')) {
-            variantesContainer.classList.remove('show');
-            variantesContainer.classList.add('hide');
-        }
-    }
-});
-
-// --- Evento: Toggle sub-secciones de coleccionables ---
-document.querySelectorAll('.toggle-variante').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Pliega todas las listas primero
-        document.querySelectorAll('.variante-list').forEach(list => {
-            list.classList.remove('show');
-            list.classList.add('hide');
-        });
-        // Abre solo la seleccionada si estaba cerrada
-        const target = document.getElementById('variante-' + btn.dataset.target);
-        if (target && !target.classList.contains('show')) {
-            target.classList.add('show');
-            target.classList.remove('hide');
-        }
-    });
-});
-
-// --- Paneles móviles ---
-const variantesBtnM = document.getElementById('toggle-variantes-m');
-const historialBtnM = document.getElementById('toggle-historial-m');
-const variantesContainerM = document.getElementById('variantes-container-m');
-const historialContainerM = document.getElementById('historial-container-m');
-const historialListM = document.getElementById('historial-list-m');
-
-// Mostrar/ocultar Coleccionables en móvil
-if (variantesBtnM && variantesContainerM) {
-    variantesBtnM.addEventListener('click', () => {
-        if (variantesContainerM.classList.contains('show')) {
-            variantesContainerM.classList.remove('show');
-            variantesContainerM.classList.add('hide');
-        } else {
-            variantesContainerM.classList.remove('hide');
-            variantesContainerM.classList.add('show');
-            // Cierra historial si está abierto
-            if (historialContainerM.classList.contains('show')) {
-                historialContainerM.classList.remove('show');
-                historialContainerM.classList.add('hide');
-            }
-            // Pliega sublistas
-            variantesContainerM.querySelectorAll('.variante-list').forEach(list => {
-                list.classList.remove('show');
-                list.classList.add('hide');
-            });
-        }
-    });
-}
-
-// Mostrar/ocultar Historial en móvil
-if (historialBtnM && historialContainerM) {
-    historialBtnM.addEventListener('click', () => {
-        if (historialContainerM.classList.contains('show')) {
-            historialContainerM.classList.remove('show');
-            historialContainerM.classList.add('hide');
-        } else {
-            historialContainerM.classList.remove('hide');
-            historialContainerM.classList.add('show');
-            // Cierra variantes si está abierto
-            if (variantesContainerM.classList.contains('show')) {
-                variantesContainerM.classList.remove('show');
-                variantesContainerM.classList.add('hide');
-            }
-        }
-    });
-}
-
-// --- Actualiza historial en móvil también ---
-function agregarAlHistorialMovil(premio, contadorActual) {
-    if (!historialListM) return;
-    // El contador inicia en P0
-    const contadorMostrado = contadorActual - 1;
+// --- Función única para actualizar historial (PC y móvil) ---
+function actualizarHistorial(historialList, premio, contadorActual) {
+    const contadorMostrado = contadorActual;
     let encontrado = false;
-    for (let li of historialListM.children) {
+    for (let li of historialList.children) {
         const img = li.querySelector('img');
         if (img && img.src === premio) {
             let span = li.querySelector('span');
@@ -279,9 +112,8 @@ function agregarAlHistorialMovil(premio, contadorActual) {
                 span.style.fontWeight = "bold";
                 li.appendChild(span);
             }
-            // Solo muestra si es P2 o mayor
             span.textContent = contadorMostrado >= 2 ? `P${contadorMostrado}` : "";
-            historialListM.insertBefore(li, historialListM.firstChild);
+            historialList.insertBefore(li, historialList.firstChild);
             encontrado = true;
             break;
         }
@@ -299,98 +131,179 @@ function agregarAlHistorialMovil(premio, contadorActual) {
             span.style.fontWeight = "bold";
             li.appendChild(span);
         }
-        historialListM.insertBefore(li, historialListM.firstChild);
-        while (historialListM.children.length > 10) {
-            historialListM.removeChild(historialListM.lastChild);
+        historialList.insertBefore(li, historialList.firstChild);
+        while (historialList.children.length > 10) {
+            historialList.removeChild(historialList.lastChild);
         }
     }
 }
 
-// Modifica el evento de reclamar premio para actualizar ambos historiales
-document.body.addEventListener('click', (e) => {
-    if (!mostrandoPremio || e.target === mainVid) return;
+// --- Cuando se cierra el panel de coleccionables, pliega todas las sub-secciones ---
+function plegarSubsecciones() {
+    document.querySelectorAll('.variante-list').forEach(list => {
+        list.classList.remove('show');
+        list.classList.add('hide');
+    });
+}
 
-    randomImg.classList.remove('show');
-    setTimeout(() => {
-        randomImg.classList.add('hidden');
-        clickMsg.classList.add('hidden');
-        mostrandoPremio = false;
-        document.getElementById('animacion-premio').innerHTML = '';
+// --- Mostrar/Ocultar paneles de variantes y historial ---
 
-        // Agrega al historial (PC)
-        const premio = randomImg.src;
-        contadorPremios[premio] = (contadorPremios[premio] || 0) + 1;
-        const contadorMostrado = Math.min(contadorPremios[premio], 6);
-
-        // Busca si ya existe la imagen en el historial
-        let encontrado = false;
-        for (let li of historialList.children) {
-            const img = li.querySelector('img');
-            if (img && img.src === premio) {
-                let span = li.querySelector('span');
-                if (!span) {
-                    span = document.createElement('span');
-                    span.style.marginLeft = "8px";
-                    span.style.fontWeight = "bold";
-                    li.appendChild(span);
-                }
-                span.textContent = `P${contadorMostrado}`;
-                historialList.insertBefore(li, historialList.firstChild);
-                encontrado = true;
-                break;
-            }
+// PC - Toggle variantes
+if (btnVariantes && contVariantes) {
+    btnVariantes.addEventListener('click', () => {
+        contVariantes.classList.toggle('show');
+        contVariantes.classList.toggle('hide');
+        // Si se cierra el panel, pliega sub-secciones
+        if (!contVariantes.classList.contains('show')) {
+            plegarSubsecciones();
         }
-        if (!encontrado) {
-            const li = document.createElement('li');
-            const img = document.createElement('img');
-            img.src = premio;
-            img.alt = "Premio";
-            li.appendChild(img);
-            if (contadorMostrado > 1) {
-                const span = document.createElement('span');
-                span.textContent = `P${contadorMostrado}`;
-                span.style.marginLeft = "8px";
-                span.style.fontWeight = "bold";
-                li.appendChild(span);
-            }
-            historialList.insertBefore(li, historialList.firstChild);
-            while (historialList.children.length > 10) {
-                historialList.removeChild(historialList.lastChild);
-            }
+    });
+}
+
+// PC - Toggle historial
+if (btnHistorial && contHistorial) {
+    btnHistorial.addEventListener('click', () => {
+        contHistorial.classList.toggle('show');
+        contHistorial.classList.toggle('hide');
+    });
+}
+
+// Móvil - Toggle variantes (solo uno abierto a la vez)
+if (btnVariantesM && contVariantesM && contHistorialM) {
+    btnVariantesM.addEventListener('click', () => {
+        contHistorialM.classList.remove('show');
+        contHistorialM.classList.add('hide');
+        contVariantesM.classList.toggle('show');
+        contVariantesM.classList.toggle('hide');
+        // Si se cierra el panel, pliega sub-secciones
+        if (!contVariantesM.classList.contains('show')) {
+            plegarSubsecciones();
         }
-        // También agrega al historial móvil
-        agregarAlHistorialMovil(premio, contadorPremios[premio]);
+    });
+}
 
-        // Reinicia el video y lo pausa al instante
-        mainVid.currentTime = 0;
-        mainVid.pause();
-    }, 300);
+// Móvil - Toggle historial (solo uno abierto a la vez)
+if (btnHistorialM && contHistorialM && contVariantesM) {
+    btnHistorialM.addEventListener('click', () => {
+        contVariantesM.classList.remove('show');
+        contVariantesM.classList.add('hide');
+        contHistorialM.classList.toggle('show');
+        contHistorialM.classList.toggle('hide');
+    });
+}
 
-    // Marca la estrella de la variante correspondiente
-    const premioObj = premios.find(p => p.src === randomImg.src);
-    if (premioObj) {
-        ['estrella-figura', 'estrella-tarjeta', 'estrella-llavero'].forEach(id => {
-            document.getElementById(id).classList.remove('activa');
-        });
-        document.getElementById('estrella-' + premioObj.tipo).classList.add('activa');
-    }
-});
-
-// --- Sublistas de coleccionables en móvil ---
+// --- Toggle variantes (solo una sub-sección abierta a la vez, SOLO móvil) ---
 document.querySelectorAll('.toggle-variante').forEach(btn => {
     btn.addEventListener('click', function() {
-        // Pliega todas las listas primero SOLO en el contenedor correspondiente
-        let parentContainer = btn.closest('.variantes-container');
-        if (!parentContainer) return;
-        parentContainer.querySelectorAll('.variante-list').forEach(list => {
-            list.classList.remove('show');
-            list.classList.add('hide');
-        });
-        // Abre solo la seleccionada si estaba cerrada
-        const target = parentContainer.querySelector('#variante-' + btn.dataset.target);
-        if (target && !target.classList.contains('show')) {
-            target.classList.add('show');
-            target.classList.remove('hide');
+        // Solo ejecutar en móvil
+        if (window.innerWidth <= 700) {
+            const target = this.getAttribute('data-target');
+            const ul = document.getElementById('variante-' + target);
+
+            // Cierra todas las sub-secciones primero
+            document.querySelectorAll('.variante-list').forEach(list => {
+                list.classList.remove('show');
+                list.classList.add('hide');
+            });
+
+            // Abre/cierra solo la seleccionada
+            if (ul) {
+                if (!ul.classList.contains('show')) {
+                    ul.classList.add('show');
+                    ul.classList.remove('hide');
+                } else {
+                    ul.classList.remove('show');
+                    ul.classList.add('hide');
+                }
+            }
         }
     });
 });
+
+// --- Submenú lateral variantes (solo PC, solo con click) ---
+if (window.innerWidth > 700) {
+    let submenuLateral = document.createElement('div');
+    submenuLateral.className = 'submenu-lateral';
+    document.querySelector('.variantes-toggle').appendChild(submenuLateral);
+
+    // SOLO selecciona los botones y listas de PC (sin -m)
+    const variantesMap = {
+        figuras: {
+            btn: document.querySelector('.variantes-container .toggle-variante[data-target="figuras"]'),
+            ul: document.getElementById('variante-figuras'),
+            clase: 'figuras',
+            titulo: 'Figuras'
+        },
+        tarjetas: {
+            btn: document.querySelector('.variantes-container .toggle-variante[data-target="tarjetas"]'),
+            ul: document.getElementById('variante-tarjetas'),
+            clase: 'tarjetas',
+            titulo: 'Tarjetas'
+        },
+        llaveros: {
+            btn: document.querySelector('.variantes-container .toggle-variante[data-target="llaveros"]'),
+            ul: document.getElementById('variante-llaveros'),
+            clase: 'llaveros',
+            titulo: 'Llaveros'
+        }
+    };
+
+    let submenuAbierto = null;
+
+    function mostrarSubmenuLateral(tipo) {
+        submenuLateral.innerHTML = '';
+        submenuLateral.className = 'submenu-lateral show ' + variantesMap[tipo].clase;
+
+        const h3 = document.createElement('h3');
+        h3.textContent = variantesMap[tipo].titulo;
+        h3.style.marginBottom = '10px';
+        submenuLateral.appendChild(h3);
+
+        const ulClon = variantesMap[tipo].ul.cloneNode(true);
+        ulClon.classList.remove('hide', 'show');
+        ulClon.removeAttribute('style');
+        ulClon.style.display = 'block';
+        submenuLateral.appendChild(ulClon);
+
+        // Ya no necesitas setear .style.top o .style.left aquí
+        submenuLateral.style.display = 'block';
+
+        submenuAbierto = tipo;
+    }
+
+    function ocultarSubmenuLateral() {
+        submenuLateral.className = 'submenu-lateral';
+        submenuLateral.style.display = 'none';
+        submenuAbierto = null;
+    }
+
+    // Click en botón: abre/cierra submenú lateral
+    Object.keys(variantesMap).forEach(tipo => {
+        if (variantesMap[tipo].btn) {
+            variantesMap[tipo].btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (submenuAbierto === tipo) {
+                    ocultarSubmenuLateral();
+                } else {
+                    mostrarSubmenuLateral(tipo);
+                }
+            });
+        }
+    });
+
+    // Click fuera: cierra submenú lateral
+    document.addEventListener('click', (e) => {
+        if (!submenuLateral.contains(e.target)) {
+            ocultarSubmenuLateral();
+        }
+    });
+
+    // Evita que el submenú se cierre si haces click dentro de él
+    submenuLateral.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Oculta el submenú si haces scroll o cambias de tamaño
+    window.addEventListener('scroll', ocultarSubmenuLateral);
+    window.addEventListener('resize', ocultarSubmenuLateral);
+}

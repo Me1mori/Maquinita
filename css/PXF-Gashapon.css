@@ -629,3 +629,183 @@ body {
         z-index: 10;
     }
 }
+
+/* Panel variantes PC: debajo del botón, animación izquierda a derecha */
+@media (min-width: 701px) {
+  .variantes-toggle {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .variantes-container {
+    position: absolute;
+    left: 0;
+    top: 48px;
+    min-width: 220px;   /* Antes: 320px */
+    max-width: 260px;   /* Antes: 90vw */
+    min-height: 200px;
+    background: #fff7ed;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    z-index: 2000;
+    opacity: 0;
+    transform: translateX(-40px) scaleX(0.95);
+    pointer-events: none;
+    transition: opacity 0.35s, transform 0.35s;
+    display: block;
+    margin-top: 0;
+  }
+  .variantes-container.show {
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+    pointer-events: auto;
+  }
+  .variantes-container.hide {
+    opacity: 0;
+    transform: translateX(-40px) scaleX(0.95);
+    pointer-events: none;
+  }
+  /* Submenús animados de izquierda a derecha */
+  .variante-list {
+    max-height: 0;
+    opacity: 0;
+    transform: translateX(-30px);
+    overflow: hidden;
+    transition: max-height 0.35s, opacity 0.35s, transform 0.35s;
+    margin-bottom: 0;
+  }
+  .variante-list.show {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateX(0);
+    margin-bottom: 8px;
+  }
+  .variante-list.hide {
+    max-height: 0;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+/* Panel variantes móvil: animación hacia abajo */
+@media (max-width: 700px) {
+  .variantes-container {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 96vw !important;
+    max-width: 98vw !important;
+    border-radius: 14px;
+    margin: 0 auto 10px auto;
+    box-shadow: 0 2px 8px #0001;
+    padding: 18px 8px;
+    z-index: 10;
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+    transition: max-height 0.35s, opacity 0.35s;
+    display: block;
+  }
+  .variantes-container.show {
+    opacity: 1;
+    max-height: 1000px;
+    pointer-events: auto;
+  }
+  .variantes-container.hide {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+  }
+  .variante-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s, opacity 0.35s;
+    margin-bottom: 0;
+  }
+  .variante-list.show {
+    max-height: 300px;
+    opacity: 1;
+    margin-bottom: 8px;
+  }
+  .variante-list.hide {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* Submenú lateral para variantes (solo PC, alineado y sin animación desde detrás) */
+@media (min-width: 701px) {
+  .submenu-lateral {
+    position: absolute;
+    top: 48px;
+    left: 240px; /* Antes: 340px. Ahora debe ser igual o un poco más que el ancho de .variantes-container */
+    min-width: 220px;
+    max-width: 260px;
+    min-height: 120px;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px #0002;
+    padding: 18px 14px;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0) scaleX(1);
+    filter: none;
+    transition: opacity 0.3s, transform 0.3s;
+    display: block;
+  }
+  .submenu-lateral.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scaleX(1);
+    filter: none;
+  }
+  .submenu-lateral.figuras {
+    background: #ffe6c7;
+    border-left: 6px solid #fbbf24;
+  }
+  .submenu-lateral.tarjetas {
+    background: #e0e7ff;
+    border-left: 6px solid #6366f1;
+  }
+  .submenu-lateral.llaveros {
+    background: #ede9fe;
+    border-left: 6px solid #a78bfa;
+  }
+  .submenu-lateral ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .submenu-lateral li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    font-size: 1.08rem;
+    font-weight: 500;
+    gap: 10px;
+  }
+  .submenu-lateral img.icono-variante {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #fff;
+    border: 2px solid #fff3;
+  }
+}
+
+/* Siempre mostrar las listas dentro del submenú lateral en PC */
+@media (min-width: 701px) {
+  .submenu-lateral .variante-list {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 0 !important;
+  }
+}
