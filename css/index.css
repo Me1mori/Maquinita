@@ -2,10 +2,6 @@
     margin: 0;
 }
 
-h1 {
-    font-size: 60px;
-}
-
 body {
     text-align: center;
 }
@@ -17,6 +13,11 @@ header {
 
 /* --- MODO PC (ancho mayor a 700px) --- */
 @media (min-width: 701px) {
+
+    h1 {
+        font-size: 60px;
+    }
+
     .icono {
         margin-top: 7px;
         width: 55px;
@@ -91,15 +92,20 @@ header {
 
 /* --- MODO MÓVIL (ancho menor o igual a 700px) --- */
 @media (max-width: 700px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
     .icono {
         margin-top: 7px;
-        width: 55px;
-        height: 55px;
+        width: 35px;
         margin-right: 50%;
+        margin-bottom: 15px;
     }
 
     .titulo-gasha {
-        margin-left: 15%;
+        margin-left: 25%;
         margin-right: 10px;
     }
 
@@ -117,7 +123,8 @@ header {
         width: 90vw;
         max-width: 150px;
         display: flex;
-        flex-direction: column; /* Cambia de row a column */
+        flex-direction: column;
+        /* Cambia de row a column */
         align-items: center;
         text-align: center;
         border-radius: 18px;
@@ -126,7 +133,8 @@ header {
 
     .h2-suptitle {
         font-size: 1.2rem;
-        margin: 0 0 8px 0; /* Espacio solo abajo */
+        margin: 0 0 8px 0;
+        /* Espacio solo abajo */
         border: none;
         padding: 0;
         background: none;
@@ -169,6 +177,7 @@ header {
     .toyaukasami-h2 {
         margin: 0;
         font-size: 1.1rem;
-        text-align: center; /* Opcional, asegura el centrado del texto */
+        text-align: center;
+        /* Opcional, asegura el centrado del texto */
     }
 }
