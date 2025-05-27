@@ -249,7 +249,7 @@ a {
         grid-column: 1;
         text-align: start;
         margin-top: 15px;
-        max-width: 55%;
+        max-width: 400px;
         font-size: 15px;
     }
 
