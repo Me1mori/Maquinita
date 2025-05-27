@@ -10,13 +10,23 @@ footer {
     margin-top: 50px;
     padding: 20px;
     background-color: black;
-    color: #fbbf24;
+    color: white;
     font-size: 1.2rem;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+.cc-icon {
+    max-width: 1em;
+    max-height: 1em;
+    margin-left: 0.2em;
 }
 
 /* --- MODO PC (ancho mayor a 700px) --- */
 @media (min-width: 701px) {
-
     h1 {
         font-size: 60px;
     }
@@ -41,7 +51,7 @@ footer {
         flex-direction: row;
     }
 
-    .pxf{
+    .pxf {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -133,7 +143,7 @@ footer {
         align-items: center;
     }
 
-    .pxf{
+    .pxf {
         width: 90vw;
         max-width: 150px;
         display: flex;
@@ -183,5 +193,85 @@ footer {
         font-size: 1.1rem;
         text-align: center;
         /* Opcional, asegura el centrado del texto */
+    }
+
+    .separador {
+        display: grid;
+        min-height: 100dvh;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .Copyright {
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        max-width: 400px;
+        margin: auto;
+        margin-left: 0px;
+    }
+
+    .Copyright a {
+        display: block;
+        font-size: 16px;
+        color: red;
+        text-decoration: none;
+    }
+
+    .Copyright a.creadores::before {
+        content: "© 2025 por ";
+        color: white;
+    }
+
+    .Copyright a.license::before {
+        content: "Está licenciado bajo ";
+        color: white;
+    }
+
+    .icons {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .cc-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .footer {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2px;
+    }
+
+    .footer-text {
+        grid-column: 1;
+        text-align: center;
+        margin-top: 10px;
+        max-width: 40%;
+        font-size: 15px;
+    }
+
+    .footer-themes {
+        margin: auto;
+        margin-right: 0px;
+        grid-column: 2;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 80px;
+        height: 20px;
+        margin-top: 10px;
+        border: 2px solid white;
+        border-radius: 25px;
+    }
+
+    .footer-theme-icon {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 15px;
+        height: 15px;
+        background-color: white;
     }
 }
