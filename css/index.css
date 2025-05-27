@@ -247,9 +247,9 @@ a {
 
     .footer-text {
         grid-column: 1;
-        text-align: center;
-        margin-top: 10px;
-        max-width: 40%;
+        text-align: start;
+        margin-top: 15px;
+        max-width: 55%;
         font-size: 15px;
     }
 
