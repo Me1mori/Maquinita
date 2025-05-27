@@ -6,9 +6,12 @@ body {
     text-align: center;
 }
 
-header {
-    display: flex;
-    border-bottom: 4px solid black;
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: black;
+    color: #fbbf24;
+    font-size: 1.2rem;
 }
 
 /* --- MODO PC (ancho mayor a 700px) --- */
@@ -38,9 +41,7 @@ header {
         flex-direction: row;
     }
 
-    .pxf,
-    .verano,
-    .dream-mi {
+    .pxf{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -92,6 +93,11 @@ header {
 
 /* --- MODO MÓVIL (ancho menor o igual a 700px) --- */
 @media (max-width: 700px) {
+    header {
+        display: flex;
+        border-bottom: 12px solid black;
+        margin-bottom: 25px;
+    }
 
     h1 {
         font-size: 40px;
@@ -114,12 +120,20 @@ header {
         flex-direction: column;
         align-items: center;
         gap: 22px;
-        margin-top: 18px;
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
-    .pxf,
-    .verano,
-    .dream-mi {
+    .personas {
+        width: 250px;
+        margin: 30px auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .pxf{
         width: 90vw;
         max-width: 150px;
         display: flex;
@@ -127,17 +141,16 @@ header {
         /* Cambia de row a column */
         align-items: center;
         text-align: center;
-        border-radius: 18px;
-        border: 2px solid #fbbf24;
+        border-radius: 10%;
+        border: 8px solid #fbbf24;
     }
 
     .h2-suptitle {
+        width: 90vw;
+        max-width: 150px;
         font-size: 1.2rem;
-        margin: 0 0 8px 0;
-        /* Espacio solo abajo */
-        border: none;
-        padding: 0;
-        background: none;
+        margin: 0 0 14px 0;
+        border-bottom: #fbbf24 solid 8px;
     }
 
     .maquinita-img {
@@ -145,15 +158,6 @@ header {
         border: none;
         background: none;
         margin: 0 0 8px 0;
-    }
-
-    .personas {
-        width: 95vw;
-        margin: 30px auto 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
     }
 
     .me1mori,
