@@ -237,7 +237,6 @@ a {
 
 /* --- MODO MÓVIL (ancho menor o igual a 700px) --- */
 @media (max-width: 700px) {
-
     h1 {
         font-size: 40px;
     }
@@ -425,10 +424,13 @@ a {
         color: white;
     }
 
-    .light-theme .header {
+    .light-theme header {
         display: flex;
+        text-align: center;
         border-bottom: 12px solid black;
         margin-bottom: 25px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     /* Tema Oscuro */
@@ -462,7 +464,10 @@ a {
 
     .dark-theme .header {
         display: flex;
+        text-align: center;
         border-bottom: 12px solid white;
         margin-bottom: 25px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
