@@ -264,7 +264,7 @@ a {
 
     .personas {
         width: 250px;
-        margin: 30px auto 0 auto;
+        margin: 80px auto 0 auto;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -304,7 +304,6 @@ a {
         align-items: center;
         justify-content: center;
         margin-bottom: 0;
-        /* Elimina width: 100%; para que el contenido se centre según su tamaño */
     }
 
     .persona-icon {
@@ -320,7 +319,6 @@ a {
         margin: 0;
         font-size: 1.1rem;
         text-align: center;
-        /* Opcional, asegura el centrado del texto */
     }
 
     .separador {
@@ -336,13 +334,6 @@ a {
         max-width: 400px;
         margin: auto;
         margin-left: 0px;
-    }
-
-    .Copyright a {
-        display: block;
-        font-size: 16px;
-        color: red;
-        text-decoration: none;
     }
 
     .icons {
@@ -373,29 +364,28 @@ a {
 
     .footer-themes {
         grid-column: 2;
-        margin: 11px auto;
+        margin: auto;
         display: flex;
-        justify-content: center;
-        align-items: center;
         gap: 10px;
         border: 2px solid white;
         border-radius: 25px;
-        transition: background-color 0.5s ease;
+        transition: background-color 0.7s ease;
     }
 
     .footer-theme-button {
-        font-size: 20px;
+        margin: 4px auto 4px;
         border: none;
+        font-size: 15px;
         background: transparent;
         cursor: pointer;
         transition: transform 0.3s ease;
     }
 
     .footer-theme-button:hover {
-        transform: scale(1.3);
+        transform: scale(1.6);
     }
 
-    /* Tema Claro */
+    /*TODO Tema Claro */
     .light-theme {
         background-color: white;
         color: black;
@@ -427,13 +417,12 @@ a {
     .light-theme header {
         display: flex;
         text-align: center;
-        border-bottom: 12px solid black;
         margin-bottom: 25px;
         padding-top: 15px;
         padding-bottom: 15px;
     }
 
-    /* Tema Oscuro */
+    /*TODO Tema Oscuro */
     .dark-theme {
         background-color: black;
         color: white;
@@ -465,9 +454,12 @@ a {
     .dark-theme .header {
         display: flex;
         text-align: center;
-        border-bottom: 12px solid white;
         margin-bottom: 25px;
         padding-top: 15px;
         padding-bottom: 15px;
+    }
+
+    .dark-theme a{
+        color: red;
     }
 }
