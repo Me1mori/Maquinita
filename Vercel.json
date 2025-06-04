@@ -1,8 +1,10 @@
 {
     "routes": [
         { 
+            "src": "/index", "dest": "/index.html" 
+        },
+        { 
             "src": "/(.*)", "status": 404, "dest": "/404.html" 
         }
-    ],
-    "cleanUrls": true
+    ]
 }
