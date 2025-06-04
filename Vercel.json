@@ -1,10 +1,10 @@
 {
     "routes": [
         { 
-            "src": "/index", "dest": "/index.html" 
+            "src": "/(.*)", "status": 404, "dest": "/404.html" 
         },
         { 
-            "src": "/(.*)", "status": 404, "dest": "/404.html" 
+            "src": "/", "dest": "/index.html" 
         }
     ]
 }
