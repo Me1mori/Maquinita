@@ -1,10 +1,11 @@
 {
+    "outputDirectory": "public",
     "routes": [
         { 
-            "src": "/(.*)", "status": 404, "dest": "/404.html" 
+            "src": "/(.*)", "dest": "/index.html" 
         },
         { 
-            "src": "/", "dest": "/index.html" 
+            "src": "/404", "dest": "/404.html", "status": 404 
         }
     ]
 }
