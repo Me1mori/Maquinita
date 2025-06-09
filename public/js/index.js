@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+
 document.getElementById("maquinita-pxf").onclick = function() {
     window.location.href = "./src/PXF-Gashapon.html";
 }
