@@ -1,0 +1,25 @@
+{
+  "name": "maquinita",
+  "version": "1.0.0",
+  "description": "Creando un mini juego de una maquinita para el grupo",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Me1mori/Maquinita.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Me1mori/Maquinita/issues"
+  },
+  "homepage": "https://github.com/Me1mori/Maquinita#readme"
+}

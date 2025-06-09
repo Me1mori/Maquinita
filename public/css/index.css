@@ -38,9 +38,8 @@ a {
         margin-right: 50%;
     }
 
-    .titulo-gasha {
-        margin-left: 35%;
-        margin-right: 10px;
+    .titulo-gasha{
+        width: 100%;
     }
 
     .menu {
@@ -210,8 +209,8 @@ a {
     }
 
     .dark-theme .footer {
-        background-color: white;
-        color: black;
+        background-color: #131212;
+        color: white;
     }
 
     .dark-theme .persona-icon {
@@ -220,12 +219,12 @@ a {
 
     .dark-theme .Copyright a.creadores::before {
         content: "© 2025 por ";
-        color: black;
+        color: white;
     }
 
     .dark-theme .Copyright a.license::before {
         content: "Está licenciado bajo ";
-        color: black;
+        color: white;
     }
 
     .dark-theme .header {
@@ -249,8 +248,7 @@ a {
     }
 
     .titulo-gasha {
-        margin-left: 25%;
-        margin-right: 10px;
+        width: 100%;
     }
 
     .menu {
