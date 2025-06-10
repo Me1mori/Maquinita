@@ -1,5 +1,5 @@
 document.getElementById("maquinita-pxf")?.addEventListener("click", () => {
-    window.location.href = "../src/PXF-Gashapon.html";
+    window.location.href = "./src/PXF.html";
 });
 
 // Seleccionar elementos del DOM con verificación de existencia
