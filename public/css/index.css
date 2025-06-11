@@ -1,4 +1,3 @@
-/* Fuente principal */
 @font-face {
     font-family: 'Cute Dino';
     src: url('../assets/fonts/cutedino-jpp0j.otf') format('truetype');
@@ -6,7 +5,9 @@
     font-style: normal;
 }
 
-* { margin: 0;}
+* { 
+    margin: 0;
+}
 
 body {
     background: #0F2A71;
@@ -22,10 +23,15 @@ header {
     width: 100%;
     height: 60px;
     padding-top: 18px;
-    font-size: x-large;
+    font-size: xx-large;
     border-bottom: 10px solid #081430;
-    background-color: #0F2A71;
+    background-color: #0F2A71;  
+    color: white;
 }
+.Maquina_P{
+    width: 100%;
+}
+
 
 .Ma_Superior {
     background-color: #FFCD45;
@@ -43,32 +49,65 @@ header {
     width: 100%;
     height: 140px;
     margin: 15px;
+    position: relative;
+    display: flex;
     background-color: #FFFDF0;
     border-top: 6px solid #D8D6C7;
     border-bottom: 6px solid #D8D6C7;
 }
 
-.main-content {
-    width: 100%;
+.S_I1 {
+    width: 50%;
+    height: 100%;
+    margin-bottom: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.Ma_Inferior {
-    width: 100vw;
-    max-width: 420px;
-    height: 220px;
-    display: flex;
-    flex-direction: row;
-    border-top: 8px solid #C88C0A;
-    margin: 0 auto;
-    background: none;
+    position: relative;
     overflow: hidden;
 }
 
-.maquina-izq {
+.name_G{
+    width: 50px;
+    height: 20px;
+    margin-left: 30%;
+    margin-top: 2px;
+    padding: 2px;
+    font-size: x-large;
+    text-align: center;
+    z-index: 5;
+    border: 4px solid brown;
+    border-radius: 25%;
+}
+
+.S_B1, .S_B1_1 {
+    position: absolute;
+    max-width: 75%;
+    max-height: 75%;
+    top: 35px;
+}
+
+.S_B1 {
+    z-index: 2; 
+    left: 20px;
+    border-radius: 50%;
+}
+
+.S_B1_1 {
+    z-index: 1; 
+    left: 28%;
+}
+
+.Ma_Inferior {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    background: none;
+    overflow: hidden;
     background: #FFDB60;
+}
+
+.maquina-izq {
     width: 70%;
     height: 100%;
     display: flex;
@@ -81,17 +120,17 @@ header {
 
 .ranura {
     width: 8px;
-    height: 48px;
+    height: 65px;
     background: #C88C0A;
     border-radius: 25%;
     border: 1.5px solid #FFCD45;
     margin-left: 75%;
-    margin-bottom: 45px;
+    margin-bottom: 55px;
 }
 
 .rueda {
-    width: 75px;
-    height: 75px;
+    width: 85px;
+    height: 85px;
     background: #2a4eb7;
     border-radius: 50%;
     border: 4px solid #0F2A71;
@@ -99,7 +138,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 110px;
+    margin-left: 25px;
 }
 
 .rueda-marca {
@@ -145,17 +185,14 @@ header {
     width: 30%;
     height: 100%;
     position: relative;
-    display: flex;
     align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
+    background: #2a4eb7;
+    margin-right: 25px;
 }
 
 .fondo-azul {
     position: absolute;
     left: 0; right: 0; bottom: 0; top: 0;
-    background: #2a4eb7;
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -183,7 +220,7 @@ header {
 .puerta {
     width: 65%;
     height: 40%;
-    background: #2a4eb7;
+    background: #FFCD45;
     border-radius: 75% 75% 0px 0px;
     border: 3px solid #FFCD45;
     position: absolute;
@@ -213,7 +250,9 @@ header {
 .separador {
     width: 100%;
     height: 10dvh;
-    background: #0e1e47;
+    background: #0F2A71;
+    border-top: 12px solid #0e1e47;
+    border-bottom: 12px solid #0e1e47;
 }
 
 footer {

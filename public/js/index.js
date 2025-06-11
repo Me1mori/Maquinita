@@ -1,3 +1,3 @@
-document.getElementById("maquinita-pxf")?.addEventListener("click", () => {
+document.getElementById("S_B1")?.addEventListener("click", () => {
     window.location.href = "./src/PXF.html";
 });
