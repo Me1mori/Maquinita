@@ -3,6 +3,7 @@ google582e62edc0a6d7b2.html
 .git
 .env
 
+.vscode/
 private/
 node_modules/
 a/

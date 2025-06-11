@@ -1,76 +1,235 @@
-*{
+/* Fuente principal */
+@font-face {
+    font-family: 'Cute Dino';
+    src: url('../assets/fonts/cutedino-jpp0j.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* { margin: 0;}
+
+body {
+    background: #0F2A71;
+    font-family: 'Cute Dino', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    padding-top: 18px;
+    font-size: x-large;
+    border-bottom: 10px solid #081430;
+    background-color: #0F2A71;
+}
+
+.Ma_Superior {
+    background-color: #FFCD45;
+    border-bottom: 12px solid #C88C0A;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    width: 100%;
+}
+
+.estante1, .estante2 {
+    width: 100%;
+    height: 140px;
+    margin: 15px;
+    background-color: #FFFDF0;
+    border-top: 6px solid #D8D6C7;
+    border-bottom: 6px solid #D8D6C7;
+}
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Ma_Inferior {
+    width: 100vw;
+    max-width: 420px;
+    height: 220px;
+    display: flex;
+    flex-direction: row;
+    border-top: 8px solid #C88C0A;
+    margin: 0 auto;
+    background: none;
+    overflow: hidden;
+}
+
+.maquina-izq {
+    background: #FFDB60;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    position: relative;
+    padding-left: 18px;
+}
+
+.ranura {
+    width: 8px;
+    height: 48px;
+    background: #C88C0A;
+    border-radius: 25%;
+    border: 1.5px solid #FFCD45;
+    margin-left: 75%;
+    margin-bottom: 45px;
+}
+
+.rueda {
+    width: 75px;
+    height: 75px;
+    background: #2a4eb7;
+    border-radius: 50%;
+    border: 4px solid #0F2A71;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.rueda-marca {
+    width: 65px;
+    height: 12px;
+    background: #1a388b;
+    border-radius: 7px;
+    transform: rotate(-30deg);
+}
+
+.personas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 8px;
+    margin-bottom: 12px;
+}
+
+.persona {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Me1mori, .Toya {
+    width: 25px;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 50%;
     margin: 0;
 }
 
-body{
-    text-align: center;
-    font-family: 'Cute Dino';
+.nombre-personaje {
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Cute Dino', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
-header{
-    margin-top: 10px;
-    width: 100%;
-    height: 75px;
-    font-size: xx-large;
-    text-align: center;
-    border-bottom: 12px solid black;
-}
-
-footer{
-    background-color: black;
-    color: white;
-}
-
-.menu{
-    width: 100%;
-    height: 550px;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    justify-content: center;
+.maquina-der {
+    width: 30%;
+    height: 100%;
+    position: relative;
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent;
 }
 
-.pxf{
-    width: 450px;
-    height: 450px;
-    min-width: 150px;
-    min-height: 150px;
-    margin-left: 15px;
-    margin-right: 15px;
-    border: 16px solid yellow;
-    border-radius: 55px;
-}
-
-.h2-suptitle{
-    margin-top: 12px;
-    font-size: xx-large;
-    border-bottom: 14px solid yellow;
-}
-
-.maquinita-img{
+.fondo-azul {
+    position: absolute;
+    left: 0; right: 0; bottom: 0; top: 0;
+    background: #2a4eb7;
     width: 100%;
-    height: 87%;
-    border-radius: 0px 0px 35px 35px;
+    height: 100%;
+    z-index: 0;
 }
 
+.linea-blanca {
+    width: 3px;
+    height: 100%;
+    background: #fff;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+}
 
-img{
-    width: 120px;
+.linea-blanca.izq {
+    left: 50%;
+    transform: translateX(-28px);
+}
+.linea-blanca.der {
+    left: 50%;
+    transform: translateX(28px);
+}
+
+.puerta {
+    width: 65%;
+    height: 40%;
+    background: #2a4eb7;
+    border-radius: 75% 75% 0px 0px;
+    border: 3px solid #FFCD45;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 3;
+    overflow: visible;
+}
+
+.puerta::after {
+    content: "";
+    display: block;
+    width: 95%;
+    height: 65%;
+    background: #7a3a00;
+    border-radius: 175px 175px 0px 0px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .separador {
-    display: grid;
-    min-height: 100dvh;
-    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    height: 10dvh;
+    background: #0e1e47;
 }
 
-.name_title, .creadores, .license{
-    color: red;
+footer {
+    width: 100%;
+    background-color: #0F2A71;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.name_title, .creadores, .license {
+    color: #FFCD45;
     display: block;
     text-decoration: none;
 }
 
-.cc-icon{
+.cc-icon {
     max-width: 1em;
     max-height: 1em;
     margin-left: 0.2em;
@@ -84,11 +243,4 @@ a.creadores::before {
 .Copyright a.license::before {
     content: "Está licenciado bajo ";
     color: white;
-}
-
-@font-face {
-    font-family: 'Cute Dino';
-    src: url('../assets/fonts/cutedino-jpp0j.otf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }

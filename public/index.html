@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="icon" href="./img/icono.jpg" type="image/x-icon" />
+    <link rel="icon" href="./img/icon.png" type="image/x-png" />
     <title>Menú principal</title>
 </head>
 
@@ -13,25 +13,38 @@
     <header class="header">
         <h1 class="titulo-gasha">GACHAFOR</h1>
     </header>
-
-    <div class="menu">
-        <div class="pxf" id="maquinita-pxf">
-            <h2 class="h2-suptitle">PHF</h2>
-            <img src="./img/maquinita.png" alt="" class="maquinita-img" />
-        </div>
+    
+    <div class="Ma_Superior">
+        <div class="estante1"></div>
+        <div class="estante2"></div>
     </div>
 
-    <div class="personas">
-        <div class="me1mori">
-            <img src="./img/Titular - copia.png" alt="" class="persona-icon" />
-            <h2 class="me1mori-h2">Me1mori</h2>
-        </div>
-        <div class="toyaukasami">
-            <img src="./img/Toya_ico.png" alt="" class="persona-icon" />
-            <h2 class="toyaukasami-h2">Toyaukasami</h2>
+    <div class="main-content">
+        <div class="Ma_Inferior">
+            <div class="maquina-izq">
+                <div class="ranura"></div>
+                <div class="rueda">
+                    <div class="rueda-marca"></div>
+                </div>
+                <div class="personas">
+                    <div class="persona">
+                        <img src="./img/Titular - copia.png" class="Me1mori">
+                        <span class="nombre-personaje">Me1mori</span>
+                    </div>
+                    <div class="persona">
+                        <img src="./img/Toya_ico.png" class="Toya">
+                        <span class="nombre-personaje">Toya</span>
+                    </div>
+                </div>
+            </div>
+            <div class="maquina-der">
+                <div class="fondo-azul"></div>
+                <div class="linea-blanca izq"></div>
+                <div class="linea-blanca der"></div>
+                <div class="puerta"></div>
+            </div>
         </div>
     </div>
-
     <div class="separador"></div>
 
     <footer class="footer">
@@ -49,7 +62,7 @@
             <button id="lightMode" class="footer-theme-button">☀️</button>
             <button id="darkMode" class="footer-theme-button">🌙</button>
         </div>
-        <p class="footer-text">Versión de la web: 2.1.0-alpha.1</p>
+        <p class="footer-text">Versión de la web: 2.1.0-alpha.2</p>
     </footer>
 
     <script src="./js/index.js"></script>
