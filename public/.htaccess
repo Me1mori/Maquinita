@@ -3,23 +3,13 @@ DirectoryIndex index.html
 # Habilitar el motor de reescritura
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
-    # Si el archivo o directorio no existe, continúa con las reglas
+
+    # Si la petición no es un archivo o directorio real
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Intentar agregar .html
-    RewriteCond %{REQUEST_FILENAME}.html -f
-    RewriteRule ^(.+)$ $1.html [L,QSA]
-    
-    # Intentar agregar .php
-    RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.+)$ $1.php [L,QSA]
-    
-    # Si no se encuentra el archivo, redirigir a 404.html
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /404.html [L]
+
+    # Reescribe /algo a /algo.html
+    RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 # Configurar la página de error 404
