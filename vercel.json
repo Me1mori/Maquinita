@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/src/PXF", "destination": "/src/:PXF.html" },
+    { "source": "/src/PXF", "destination": "/src/PXF.html" },
     { "source": "/:page", "destination": "/:page.html" },
     { "source": "/404", "destination": "/404.html" },
     { "source": "/src/:page/", "destination": "/src/:page.html" }
