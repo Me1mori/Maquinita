@@ -1,4 +1,4 @@
 # Maquinita
 Creando un mini juego de una maquinita para el grupo
 
- ### Versión 2.1.1-alpha.4
+ ### Versión 2.1.1-alpha.5
