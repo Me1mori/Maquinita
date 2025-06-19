@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/src/:page", "destination": "/src/:page.html" },
     { "source": "/:page", "destination": "/:page.html" },
-    { "source": "/404", "destination": "/404.html" }
+    { "source": "/404", "destination": "/404.html" },
+    { "source": "/src/:page/", "destination": "/src/:page.html" }
   ]
 }
