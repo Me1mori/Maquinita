@@ -7,7 +7,6 @@
 
 * {
     margin: 0;
-    box-sizing: border-box;
 }
 
 html, body {
@@ -19,17 +18,23 @@ html, body {
     position: relative;
 }
 
+html{
+    background-color: orange;
+}
+
 body {
     background-image: url('../img/background-img.jpg');
+    min-width: 340px;
+    min-height: 680px;
     font-family: 'Cute Dino', sans-serif;
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
+    min-height: 64px;
     text-align: center;
     margin-top: 0;
     z-index: 1;
@@ -46,6 +51,10 @@ header {
 
 /*Todo: Contenedor principal */
 .contenedor-principal {
+    width: 100%;
+    height: 561px;
+    min-height: 550px;
+    padding-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,10 +63,6 @@ header {
     position: relative;
     z-index: 1;
     min-height: unset;
-    height: 40vh;
-    min-height: 0;
-    padding-top: 45px;
-    flex: 1;
 }
 
 .btn-lateral {
@@ -102,7 +107,8 @@ header {
 }
 
 .btn-historial {
-    width: 100vw;
+    width: 100%;
+    margin-top: 15px;
     background: #9c3400;
     color: #fff;
     font-size: 2em;
@@ -110,7 +116,7 @@ header {
     border: none;
     border-radius: 0;
     padding: 0.5em 0;
-    position: absolute;
+    position: relative; /* Cambia a relative */
     left: 0;
     bottom: 0;
     z-index: 2;
@@ -121,6 +127,10 @@ header {
 
 /*TODO: Footer styles*/
 /*! No touch*/
+.separador {
+    width: 100%;
+    min-height: calc(100vh - 680px);
+}
 
 footer {
     width: 100%;
@@ -152,4 +162,54 @@ a.creadores::before {
 .Copyright a.license::before {
     content: "Está licenciado bajo ";
     color: white;
+}
+
+/* Modal styles */
+.modal {
+    position: fixed;
+    z-index: 10;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+}
+.modal-content {
+    background: #fff;
+    padding: 2em;
+    border-radius: 1em;
+    position: relative;
+    min-width: 300px;
+    max-width: 90vw;
+    text-align: left;
+}
+.close {
+    position: absolute;
+    top: 0.5em; right: 0.8em;
+    font-size: 2em;
+    color: #fc5500;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.historial-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.historial-section {
+    width: 85vw;
+    max-width: 600px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background: #fff;
+    border: 2px solid #9c3400;
+    border-radius: 1em;
+    padding: 1em 2em;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: left;
+    display: none;
+    z-index: 5;
 }

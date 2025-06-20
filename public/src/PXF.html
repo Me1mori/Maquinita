@@ -13,17 +13,31 @@
     <header>
         <h1 class="titulo">PHOENIX FORCE</h1>
     </header>
+
     <main class="contenedor-principal">
         <button class="btn-lateral">COLECCIÓN</button>
         <section class="maquina-centro">
             <img src="../img/Bola_1.png" alt="" class="bolita">
             <video autoplay loop src="../img/Maquinita.webm" class="maquinita" title="Maquinita"></video>
         </section>
-        <button class="btn-historial">HISTORIAL</button>
+        <div class="historial-wrapper">
+            <span class="btn-historial">HISTORIAL</span>
+            <div id="historialSection" class="historial-section" style="display:none;">
+                <h2>Historial</h2>
+                <p>Aquí va el contenido del historial.</p>
+            </div>
+        </div>
+        <!-- Ventana modal para COLECCIÓN -->
+        <div id="modalColeccion" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="closeColeccion">&times;</span>
+                <h2>Colección</h2>
+                <p>Aquí va el contenido de la colección.</p>
+            </div>
+        </div>
     </main>
-
     <!--TODO: Separador del footer-->
-
+    <div class="separador"></div>
     <footer class="footer">
         <div class="Copyright">
             <a href="https://gachafor.vercel.app/" class="name_title">GACHAFOR</a>
@@ -37,6 +51,7 @@
         </div>
         <p class="footer-text">Versión de la web: 2.1.1-alpha.5</p>
     </footer>
+    <script src="../js/PXF.js"></script>
 </body>
 
 </html>
